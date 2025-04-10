@@ -64,3 +64,9 @@ Brindar una herramienta digital que:
 | **Diseño UI/UX** | Figma |
 
 ---
+## 📚 Estado del Proyecto
+
+🚧 *Este proyecto se encuentra actualmente en desarrollo como parte del trabajo final de la materia anual **Taller 3**, correspondiente a la **Tecnicatura en Análisis de Sistemas** que estoy cursando.*  
+A medida que avance el ciclo lectivo, se irán agregando nuevas funcionalidades y mejoras.
+
+---
