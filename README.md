@@ -70,3 +70,4 @@ Brindar una herramienta digital que:
 A medida que avance el ciclo lectivo, se irán agregando nuevas funcionalidades y mejoras.
 
 ---
+© 2025 [Marianela Cortina - Lautaro Landolfo]. Todos los derechos reservados.
