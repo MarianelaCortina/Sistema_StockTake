@@ -59,7 +59,7 @@ Brindar una herramienta digital que:
 | Tecnología | Descripción |
 |------------|-------------|
 | **Frontend** | Angular + HTML + CSS |
-| **Backend**  | .NET Core con C# |
+| **Backend**  | .NET con C# |
 | **Base de Datos** | Microsoft SQL Server |
 | **Diseño UI/UX** | Figma |
 
