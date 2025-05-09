@@ -1,0 +1,23 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build results
+bin/
+obj/
+
+# .NET
+*.db
+*.log
+
+
+*.pdb
+
+# Angular
+node_modules/
+dist/
+.angular/
+
+# Otros
+.env
