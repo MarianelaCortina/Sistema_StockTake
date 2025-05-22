@@ -21,3 +21,5 @@ dist/
 
 # Otros
 .env
+appsettings.json
+appsettings.*.json
