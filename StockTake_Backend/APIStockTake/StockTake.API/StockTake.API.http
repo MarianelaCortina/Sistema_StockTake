@@ -1,6 +1,0 @@
-@StockTake.API_HostAddress = http://localhost:5299
-
-GET {{StockTake.API_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
