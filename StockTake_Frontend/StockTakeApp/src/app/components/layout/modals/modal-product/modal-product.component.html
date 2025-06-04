@@ -1,0 +1,67 @@
+<h2 mat-dialog-title>{{ titleAction }} Producto</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="formProduct">
+    <mat-grid-list cols="1" rowHeight="80px">
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput autocomplete="off" formControlName="nombre" />
+          <mat-icon matSuffix>fif_screen</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Categoría</mat-label>
+          <mat-select formControlName="categoriaId">
+            <mat-option *ngFor="let item of listCategories" [value]="item.id">
+              {{ item.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Stock</mat-label>
+          <input matInput type="number" autocomplete="off" formControlName="stock" />
+          <mat-icon matSuffix>inventory</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Precio</mat-label>
+          <input matInput type="number" autocomplete="off" formControlName="precio" />
+          <mat-icon matSuffix>attach_money</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Estado</mat-label>
+          <mat-select formControlName="esActivo">
+            <mat-option value="1">Activo</mat-option>
+            <mat-option value="0">No activo</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="warn" (click)="cerrarModal()">Volver</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="formProduct.invalid"
+    (click)="guardarEditarProducto()"
+  >
+    {{ buttonAction }}
+  </button>
+</mat-dialog-actions>
+

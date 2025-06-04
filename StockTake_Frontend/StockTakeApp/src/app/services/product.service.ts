@@ -1,3 +1,4 @@
+//StockTake
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from 'rxjs';
@@ -16,21 +17,18 @@ export class ProductService {
   getAllProducts(): Observable<Product[]> {
     return this.https.get<Product[]>(`${this.urlAPI}GetProducts`); 
   }
-  /* lista():Observable<ResponseApi>{
-    return this.http.get<ResponseApi>(`${this.urlAPI}Lista`)
-  } */
 
-  /* guardar(request: Producto):Observable<ResponseApi>{
-    return this.http.post<ResponseApi>(`${this.urlAPI}Guardar`, request)
-  } */
+  createProduct(request: Product):Observable<Product>{
+    return this.https.post<Product>(`${this.urlAPI}CreateProduct`, request)
+  }
 
- /*  editar(request: Producto):Observable<ResponseApi>{
-    return this.http.put<ResponseApi>(`${this.urlAPI}Editar`, request)
-  } */
-  
-  /* eliminar(id: number):Observable<ResponseApi>{
-    return this.http.delete<ResponseApi>(`${this.urlAPI}Eliminar/${id}`)
-  } */
+  editProduct(id: number, product: Product): Observable<void> {
+    return this.https.put<void>(`${this.urlAPI}EditProduct/${id}`, product);
+  }
+
+  deleteProduct(id: number): Observable<void> {
+    return this.https.delete<void>(`${this.urlAPI}DeleteProduct/${id}`);
+  }
 
 
 }

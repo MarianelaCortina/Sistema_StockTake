@@ -2,8 +2,8 @@ export interface Product {
     id: number,
     nombre: string,
     descripcion: string,
-    precio: string,
+    precio: number,
     stock: number,
     categoriaId: number,
-    esActivo: number
+    esActivo: boolean
 }
