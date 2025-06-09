@@ -33,7 +33,8 @@ namespace StockTakeAPI.Controllers
                 Precio = p.Precio,
                 Stock = p.Stock,
                 CategoriaId = p.CategoriaId,
-                CategoriaNombre = p.Categoria?.Nombre
+                CategoriaNombre = p.Categoria?.Nombre,
+                EsActivo = p.EsActivo
             }).ToList();
 
             return Ok(productosDTO);

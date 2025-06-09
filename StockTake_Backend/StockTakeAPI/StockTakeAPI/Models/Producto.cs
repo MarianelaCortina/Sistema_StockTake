@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 namespace StockTakeAPI.Models
 {
@@ -7,6 +8,7 @@ namespace StockTakeAPI.Models
             public int Id { get; set; }
             public string? Nombre { get; set; }
             public string? Descripcion { get; set; }
+            [Precision(10, 2)]
             public decimal Precio { get; set; }
             public int Stock { get; set; } // 👈 Nuevo atributo agregado
             
