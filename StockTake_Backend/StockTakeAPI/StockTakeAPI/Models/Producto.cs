@@ -20,7 +20,9 @@ namespace StockTakeAPI.Models
            
             [JsonIgnore]
             public Categoria? Categoria { get; set; }
-        }
+
+            public  ICollection<DetalleVenta> DetalleVenta { get; set; } = new List<DetalleVenta>();
+    }
 
 
 }
