@@ -36,6 +36,9 @@ builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
+builder.Services.AddScoped<IMenuService, MenuService>();
+builder.Services.AddScoped<IVentaService, VentaService>();
+
 
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>

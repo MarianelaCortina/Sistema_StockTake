@@ -1,0 +1,10 @@
+<nav *ngIf="menus.length > 0" class="menu">
+  <ul>
+    <li *ngFor="let menu of menus">
+      <a [routerLink]="menu.url">
+        <i [class]="menu.icono"></i> {{ menu.nombre }}
+      </a>
+    </li>
+  </ul>
+</nav>
+

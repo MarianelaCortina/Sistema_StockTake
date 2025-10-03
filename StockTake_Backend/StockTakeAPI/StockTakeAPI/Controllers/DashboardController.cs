@@ -25,13 +25,13 @@ namespace StockTakeAPI.Controllers
 
             try
             {
-                rsp.status = true;
-                rsp.value = await _dbService.Resumen();
+                rsp.Status = true;
+                rsp.Value = await _dbService.Resumen();
             }
             catch (Exception ex)
             {
-                rsp.status = false;
-                rsp.msg = ex.Message;
+                rsp.Status = false;
+                rsp.Msg = ex.Message;
             }
             return Ok(rsp);
         }

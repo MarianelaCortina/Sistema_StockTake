@@ -1,8 +1,56 @@
-<div style="text-align: center; margin-top: 2rem;">
+<mat-toolbar color="primary">
+    <mat-toolbar-row class="toolbar-row">
+        <button mat-icon-button (click)="sidenav.toggle();">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <h1 class="toolbar-title">StockTake</h1>
+
+        <span class="flex-spacer"></span>
+        <div class="user-info">
+            <label for="" class="user-label">
+                <!-- {{correoUsuario}} | {{rolUsuario}} -->
+            </label>
+            <button mat-icon-button >
+                <mat-icon>logout</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav opened="true" mode="side" class="sidenav">
+        <mat-nav-list>
+
+            <mat-list-item *ngFor="let menu of listaMenu" 
+            [routerLink]="menu.url"
+            routerLinkActive="active-link"
+            #rla="routerLinkActive"
+            [activated]="rla.isActive">
+                <mat-icon matListItemIcon>{{menu.icono}}</mat-icon> 
+                <div mat-line>{{menu.nombreMenu}}</div>
+            </mat-list-item>
+
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div>
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+<!-- <app-dashboard></app-dashboard> -->
+<!-- <div style="text-align: center; margin-top: 2rem;">
+    <app-navbar>
+      <Menú dinámico -->
+      <!-- <app-menu></app-menu>
+    </app-navbar>
+  
     <h2>Bienvenido a StockTake</h2>
     <p>Tu sistema de gestión de inventario en progreso 🚀</p>
-    <app-product>
+    <app-producto>
         
-    </app-product>
-</div>
+    </app-producto>
+
+    <app-dashboard></app-dashboard>
+</div> --> 
   

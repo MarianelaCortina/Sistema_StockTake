@@ -1,0 +1,142 @@
+mat-card-content{
+    /* background-color: azure;  */
+    background-color: #f9fafb;
+    border-radius: 8px;
+}
+
+.card-info{
+    /* width: 80%;
+    background-color:aqua; */
+    width: 80%;
+    background: linear-gradient(135deg, #4f8ef7, #1e3a8a); /* degradado azul elegante */
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease;
+}
+
+.card-info:hover {
+  transform: translateY(-4px);
+}
+
+card-subtitle{
+    font-size: 18px;
+    font-weight: 600;
+    color: #e0e7ff; /* azul claro */
+    /* font-size: 20px;
+    font-weight: bold;
+    color: darkblue; */
+}
+
+.mat-icon{
+    font-size: 40px !important;
+    height: 40px !important;
+    width: 40px !important;
+    color: #ffffff;
+}
+
+/* ------------------ RESPONSIVE ------------------ */
+@media (max-width: 768px) {
+
+    .mat-mdc-card-header {
+        display: flex;
+        padding: 0 !important;
+        /* padding: 16px 16px 0; */
+    }
+    .mat-mdc-card-avatar~.mat-mdc-card-header-text .mat-mdc-card-title, 
+    .mat-mdc-card-avatar~.mat-mdc-card-header-text .mat-mdc-card-subtitle {
+    padding: 0 !important;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        margin: 10px 0 0 10px; /* Reducir el margen del título */
+        font-size: 18px; /* Reducir el tamaño de fuente del título */
+    }
+
+    .mat-card {
+        margin: 10px; /* Ajustar el margen de la tarjeta */
+        border-radius: 8px; /* Reducir el radio de borde de la tarjeta */
+    }
+
+    .card-info {
+        width: 100%; /* Hacer que las tarjetas ocupen todo el ancho en pantallas pequeñas */
+        background: linear-gradient(135deg, #4f8ef7, #1e3a8a);
+    }
+
+    .mat-icon {
+        font-size: 20px !important; /* Reducir el tamaño de los iconos */
+        height: 20px !important;
+        width: 20px !important;
+    }
+
+    mat-grid-list {
+        margin: 0 10px; /* Ajustar el margen de la lista de cuadrícula */
+        width: calc(100% - 20px); /* Ajustar el ancho de la lista de cuadrícula para ocupar todo el ancho disponible */
+    }
+
+    .card-info {
+        width: 100%; /* Hacer que las tarjetas ocupen todo el ancho en pantallas pequeñas */
+    }
+
+    .card-info .mat-card-content {
+        padding: 8px; /* Ajustar el relleno del contenido dentro de las tarjetas */
+    }
+
+    .card-info .mat-grid-tile, .card-info .mat-card-subtitle {
+        font-size: 8px; /* Reducir el tamaño de fuente del título y el subtítulo dentro de las tarjetas */
+    }
+
+    .mat-mdc-card-title, .mat-mdc-card-subtitle {
+        font-size: 12px;
+    }
+
+    .mat-mdc-card-avatar {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        margin-bottom: 16px;
+        object-fit: cover;
+        flex-shrink: 1 !important;
+    }
+
+    .mat-mdc-card-header {
+        display: flex;
+        /* padding: 16px 16px 0; */
+    }
+
+    .mat-mdc-card-avatar~.mat-mdc-card-header-text .mat-mdc-card-title, 
+    .mat-mdc-card-avatar~.mat-mdc-card-header-text .mat-mdc-card-subtitle {
+    padding: 0 !important;
+    }
+}
+
+/* Media Query para pantallas de hasta 480px */
+@media (max-width: 480px) {
+  mat-grid-list {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+
+  mat-grid-tile {
+    margin: 5px 0 !important;
+  }
+
+  mat-form-field {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  button {
+    width: 100% !important;
+  }
+
+  h1 {
+    font-size: 1.5em !important;
+    margin-left: 5px !important;
+  }
+
+  mat-card {
+    margin: 5px !important;
+  }
+}

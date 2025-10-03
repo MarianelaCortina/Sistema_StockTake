@@ -9,10 +9,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalProductComponent } from '../../modals/modal-product/modal-product.component';
 import Swal from 'sweetalert2';
 
-
-
 @Component({
-  selector: 'app-product',
+  selector: 'app-producto',
   standalone: true,
   imports: [
     CommonModule,
@@ -22,7 +20,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./product.component.css']
 })
 
-export class ProductComponent implements OnInit, AfterViewInit {
+export class ProductoComponent implements OnInit, AfterViewInit {
 
   constructor(
     private productService: ProductService,

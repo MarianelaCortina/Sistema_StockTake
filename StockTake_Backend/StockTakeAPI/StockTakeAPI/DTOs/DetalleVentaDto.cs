@@ -2,12 +2,16 @@
 {
     public class DetalleVentaDto
     {
-        public int TotalVentas { get; set; }
+        public int? IdProducto { get; set; }
+        public string? DescripcionProducto { get; set; }
+        public int? Cantidad { get; set; }
 
-        public string? TotalIngresos { get; set; }
+        public string? PrecioTexto { get; set; }
 
-        public int TotalProductos { get; set; }
-
-        public List<VentasSemanaDto> VentasUltimaSemana { get; set; }
+        public string? TotalTexto
+        {
+            get; set;
+        }
     }
+
 }

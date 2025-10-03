@@ -21,6 +21,9 @@ namespace StockTakeAPI.Data
 
         public DbSet<DetalleVenta> DetalleVenta { get; set; }
 
+        public DbSet<MovimientoStock> MovimientosStock { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -95,6 +98,14 @@ namespace StockTakeAPI.Data
                 entity.HasOne(d => d.IdVentaNavigation).WithMany(p => p.DetalleVenta)
                     .HasForeignKey(d => d.IdVenta)
                     .HasConstraintName("FK__DetalleVe__idVen__66603565");
+            });
+
+            modelBuilder.Entity<MovimientoStock>(entity =>
+            {
+                entity.HasKey(e => e.Id); // 👈 PK
+                entity.HasOne(e => e.Producto)
+                      .WithMany()
+                      .HasForeignKey(e => e.IdProducto);
             });
         }
 
