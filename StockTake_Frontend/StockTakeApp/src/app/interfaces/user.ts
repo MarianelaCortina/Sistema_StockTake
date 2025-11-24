@@ -1,24 +1,25 @@
 export interface User {
-    idUsuario: number,
-    nombreCompleto: string,
-    correo: string,
-    idRol: number,
-    rolDescripcion: string,
-    clave: string,
-    esActivo:number
+  id: number;
+  nombreCompleto: string;
+  email: string;
+  esActivo: boolean;
+  emailVerificado: boolean;
+  rolId: number;
+  rolNombre: string;
 }
 
-/* 
-public int Id { get; set; }
-public string? NombreCompleto { get; set; }
-public string? Email { get; set; }
-public string? ClaveHash { get; set; }
-public bool EsActivo { get; set; } = true;
-public DateTime FechaRegistro { get; set; } = DateTime.Now;
-public string? RefreshToken { get; set; }
-public DateTime? RefreshTokenExpiry { get; set; }
-public bool EmailVerificado { get; set; } = false;
+export interface CreateUser {
+  nombreCompleto: string;
+  email: string;
+  clave: string;
+  rolId: number;
+  esActivo?: boolean;
+}
 
-public int RolId { get; set; }
-public required Rol Rol { get; set; }
- */
+export interface UpdateUser {
+  id: number;
+  nombreCompleto: string;
+  email: string;
+  rolId: number;
+  esActivo: boolean;
+}

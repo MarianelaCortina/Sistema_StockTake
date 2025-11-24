@@ -102,11 +102,12 @@ namespace StockTakeAPI.Data
 
             modelBuilder.Entity<MovimientoStock>(entity =>
             {
-                entity.HasKey(e => e.Id); // 👈 PK
+                entity.HasKey(e => e.Id);
                 entity.HasOne(e => e.Producto)
-                      .WithMany()
+                      .WithMany(p => p.MovimientosStock)
                       .HasForeignKey(e => e.IdProducto);
             });
+
         }
 
     }

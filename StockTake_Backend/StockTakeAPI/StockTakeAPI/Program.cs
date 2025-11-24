@@ -38,6 +38,7 @@ builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddScoped<IMenuService, MenuService>();
 builder.Services.AddScoped<IVentaService, VentaService>();
+builder.Services.AddScoped<IStockService, StockService>();
 
 
 builder.Services.AddAuthentication("Bearer")

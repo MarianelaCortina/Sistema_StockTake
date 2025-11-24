@@ -8,6 +8,11 @@ export const routes: Routes = [
     component: HomeComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'pages/dashboard',
+        pathMatch: 'full',
+      },
+      {
         path: 'pages/dashboard',
         loadComponent: () =>
           import('./components/layout/pages/dashboard/dashboard.component').then(m => m.DashboardComponent),
@@ -18,12 +23,32 @@ export const routes: Routes = [
           import('./components/layout/pages/producto/product.component').then(m => m.ProductoComponent),
       },
       {
+        path: 'pages/stock',
+        loadComponent: () =>
+          import('./components/layout/pages/stock/stock.component').then(m => m.StockComponent),
+      },
+      {
         path: 'pages/venta',
         loadComponent: () =>
           import('./components/layout/pages/venta/venta.component').then(m => m.VentaComponent),
       },
-      // Faltan usuarios, historial_venta y reportes (cuando los crees, los agregás aquí)
+      {
+        path: 'pages/usuarios',
+        loadComponent: () =>
+          import('./components/layout/pages/usuario/usuario.component').then(m => m.UsuariosComponent),
+      },
+      {
+        path: 'pages/historial_venta',
+        loadComponent: () =>
+          import('./components/layout/pages/historial-venta/historial_venta.component').then(m => m.HistorialVentaComponent),
+      },
+      {
+        path: 'pages/reportes',
+        loadComponent: () =>
+          import('./components/layout/pages/reporte/reporte.component').then(m => m.ReporteComponent),
+      },
     ],
   },
-  // { path: '**', redirectTo: '' }
+  /// fallback a Dashboard si escriben algo inexistente
+  { path: '**', redirectTo: 'pages/dashboard' },
 ];

@@ -54,6 +54,23 @@ namespace StockTakeAPI.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Reporte de ventas por rango de fechas
+        /// </summary>
+        [HttpGet("reporte")]
+        public async Task<IActionResult> Reporte(
+            [FromQuery] string fechaInicio,
+            [FromQuery] string fechaFin)
+        {
+            var response = await _ventaService.Reporte(fechaInicio, fechaFin);
+
+            if (!response.Status)
+                return BadRequest(response);
+
+            return Ok(response);
+        }
+
+
     }
 }
 

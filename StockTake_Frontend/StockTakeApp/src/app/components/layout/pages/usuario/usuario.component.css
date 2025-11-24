@@ -1,0 +1,42 @@
+:host {
+  display: block;
+  min-height: calc(100vh - 80px); /* ajusta según el header */
+  padding-bottom: 40px;
+}
+
+
+.title {
+  margin: 20px 0 10px 40px;
+  font-size: 32px;
+  color: #e0e0e0;
+}
+
+.card-container {
+  margin: 20px 40px;
+  padding: 20px;
+  background: #1b1f23;
+  border-radius: 10px;
+}
+
+.search-field {
+  width: 250px;
+  margin: 10px 0 20px 0;
+}
+
+.table-container {
+  overflow: auto;
+  border-radius: 8px;
+}
+
+mat-header-cell {
+  font-weight: 600;
+  color: #bdbdbd !important;
+}
+
+mat-cell {
+  color: #e4e4e4;
+}
+
+.nuevo-usuario-btn {
+  margin-bottom: 10px;
+}

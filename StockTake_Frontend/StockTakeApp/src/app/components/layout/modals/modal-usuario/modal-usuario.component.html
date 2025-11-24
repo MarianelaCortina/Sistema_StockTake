@@ -1,0 +1,61 @@
+<h2 mat-dialog-title>{{ tituloAccion }} Usuario</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="formularioUsuario" class="form-content">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre completo</mat-label>
+      <input matInput formControlName="nombreCompleto" autocomplete="off">
+      <mat-icon matSuffix>account_circle</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" autocomplete="off">
+      <mat-icon matSuffix>mail</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Rol</mat-label>
+      <mat-select formControlName="rolId">
+        <mat-option *ngFor="let rol of roles" [value]="rol.id">
+          {{ rol.nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Contraseña</mat-label>
+      <input
+        matInput
+        [type]="ocultarPassword ? 'password' : 'text'"
+        formControlName="clave"
+      >
+      <button mat-icon-button matSuffix type="button"
+        (click)="ocultarPassword = !ocultarPassword">
+        <mat-icon>{{ ocultarPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Estado</mat-label>
+      <mat-select formControlName="esActivo">
+        <mat-option [value]="1">Activo</mat-option>
+        <mat-option [value]="0">Inactivo</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cerrar</button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="formularioUsuario.invalid"
+    (click)="guardarUsuario()">
+    {{ botonAccion }}
+  </button>
+</mat-dialog-actions>

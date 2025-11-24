@@ -21,10 +21,11 @@ export class VentaService {
   }
 
   historial(buscarPor:string, numeroVenta:string, fechaInicio:string, fechaFin:string):Observable<Response>{
-    return this.http.get<Response>(`${this.urlAPI}Historial?buscarPor=${buscarPor}&numeroVenta=${numeroVenta}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`)
+    return this.http.get<Response>(`${this.urlAPI}historial?buscarPor=${buscarPor}&numeroVenta=${numeroVenta}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`)
   }
   reporte(fechaInicio:string, fechaFin:string):Observable<Response>{
     return this.http.get<Response>(`${this.urlAPI}Reporte?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`)
   }
+
 
 }

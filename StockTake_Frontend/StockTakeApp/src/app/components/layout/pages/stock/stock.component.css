@@ -1,0 +1,163 @@
+.alert-card {
+  padding: 12px;
+  border-left: 6px solid var(--color);
+  background: #fffbe6;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  color: #333; /* ✅ texto principal más oscuro */
+  animation: fadeIn .25s ease-out;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+}
+
+/* 🔹 Título del producto */
+.alert-card b {
+  color: #222; /* más contraste */
+  font-weight: 600;
+}
+
+/* 🔹 Texto secundario (Stock, días restantes) */
+.alert-card div {
+  color: #444;
+  font-size: 0.95rem;
+}
+
+/* 🔹 Sugerencia (última línea) */
+.alert-card small {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: #555; /* más oscuro, mejor contraste */
+}
+
+/* 🔹 Barra de urgencia */
+.urgencia-bar {
+  height: 6px;
+  background: var(--color);
+  border-radius: 6px;
+  transition: width .4s ease;
+  margin-top: 6px;
+}
+
+/* 🔹 Animación */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 🧾 Sección Productos */
+.productos-section {
+  margin-top: 12px;
+}
+
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.producto-card {
+  background: #fffdf2;
+  border-left: 5px solid #e0b200;
+  transition: all 0.2s ease;
+  color: #333;
+}
+
+.producto-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.producto-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-left: 5px;
+}
+
+.producto-nombre {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #222;
+}
+
+.producto-stock {
+  font-size: 0.9rem;
+  color: #c27b00;
+  font-weight: 500;
+}
+
+/* 🌙 Modo oscuro */
+@media (prefers-color-scheme: dark) {
+  .producto-card {
+    background: #2b2b2b;
+    border-left: 5px solid #ffc107;
+    color: #eee;
+  }
+
+  .producto-nombre {
+    color: #fafafa;
+  }
+
+  .producto-stock {
+    color: #ffca28;
+  }
+}
+
+.movimientos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.mov-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #1e1e1e;
+  border-left: 5px solid var(--color);
+  border-radius: 8px;
+  padding: 10px 14px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.mov-card:hover {
+  transform: translateY(-3px);
+  background: #232323;
+}
+
+.mov-card.venta {
+  --color: #ff5252; /* 🔴 rojo */
+}
+
+.mov-card.ingreso {
+  --color: #4caf50; /* 🟢 verde */
+}
+
+.mov-icon mat-icon {
+  font-size: 24px;
+  color: var(--color);
+}
+
+.mov-info {
+  flex: 1;
+}
+
+.mov-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #bbb;
+}
+
+.mov-body {
+  font-size: 15px;
+  color: #fff;
+}
+
+.mov-cant {
+  color: #ffc107;
+  margin-left: 4px;
+}
+

@@ -13,4 +13,13 @@ namespace StockTakeAPI.DTOs
         public string? RolNombre { get; set; }
 
     }
+
+    public class CreateUsuarioDTO
+    {
+        public string NombreCompleto { get; set; }
+        public string Email { get; set; }
+        public string Clave { get; set; }
+        public int RolId { get; set; }
+    }
+
 }

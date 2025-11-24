@@ -25,9 +25,19 @@ namespace StockTakeAPI.Services
                     decimal totalDecimal = 0;
                     decimal.TryParse(model.TotalTexto, NumberStyles.Any, CultureInfo.InvariantCulture, out totalDecimal);
 
-                    var venta = new Venta
+                // Obtener último número
+                var lastVenta = await _context.Venta
+                    .OrderByDescending(v => v.IdVenta)
+                    .FirstOrDefaultAsync();
+
+                int nextNumber = (lastVenta?.IdVenta ?? 0) + 1;
+
+                string nuevoNumero = $"V{nextNumber.ToString("0000")}";
+
+
+                var venta = new Venta
                     {
-                        NumeroDocumento = model.NumeroDocumento,
+                        NumeroDocumento = nuevoNumero,
                         TipoPago = model.TipoPago,
                         Total = totalDecimal,
                         FechaRegistro = DateTime.Now,
@@ -36,7 +46,6 @@ namespace StockTakeAPI.Services
 
                     foreach (var d in model.DetalleVenta)
                     {
-                        // 🔎 Buscar producto
                         var producto = await _context.Productos.FindAsync(d.IdProducto);
                         if (producto == null)
                         {
@@ -44,7 +53,7 @@ namespace StockTakeAPI.Services
                             return new Response<VentaDto>(false, null, $"El producto con Id {d.IdProducto} no existe");
                         }
 
-                        // 🔎 Validar stock
+                        // Validar stock
                         if (producto.Stock < d.Cantidad)
                         {
                             await transaction.RollbackAsync();
@@ -52,7 +61,7 @@ namespace StockTakeAPI.Services
                                 $"Stock insuficiente de {producto.Nombre}. Stock actual: {producto.Stock}, solicitado: {d.Cantidad}");
                         }
 
-                        // 🔹 Descontar stock
+                        //Descontar stock
                         producto.Stock = (int)(producto.Stock - d.Cantidad);
 
                         _context.MovimientosStock.Add(new MovimientoStock
@@ -64,7 +73,7 @@ namespace StockTakeAPI.Services
                             Fecha = DateTime.Now
                         });
 
-                    // 🔹 Crear detalle
+                    // Crear detalle
                     decimal precio = 0, total = 0;
                         decimal.TryParse(d.PrecioTexto, NumberStyles.Any, CultureInfo.InvariantCulture, out precio);
                         decimal.TryParse(d.TotalTexto, NumberStyles.Any, CultureInfo.InvariantCulture, out total);
@@ -82,7 +91,6 @@ namespace StockTakeAPI.Services
                     await _context.SaveChangesAsync();
                     await transaction.CommitAsync();
 
-                    // 🔹 DTO de respuesta
                     var ventaDto = new VentaDto
                     {
                         IdVenta = venta.IdVenta,
@@ -108,8 +116,6 @@ namespace StockTakeAPI.Services
                     return new Response<VentaDto>(false, null, $"Error al registrar venta: {ex.Message}");
                 }
          }
-
-        
 
         public async Task<Response<List<VentaDto>>> Historial(string buscarPor, string numeroVenta, string fechaInicio, string fechaFin)
         {
@@ -163,38 +169,45 @@ namespace StockTakeAPI.Services
             }
         }
 
-        //public async Task<Response<List<ReporteDto>>> Reporte(string fechaInicio, string fechaFin)
-        //{
-        //    try
-        //    {
-        //        DateTime fech_Inicio = DateTime.ParseExact(fechaInicio, "dd/MM/yyyy", new CultureInfo("es-AR"));
-        //        DateTime fech_Fin = DateTime.ParseExact(fechaFin, "dd/MM/yyyy", new CultureInfo("es-AR"));
+        public async Task<Response<List<ReporteDTO>>> Reporte(string fechaInicio, string fechaFin)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(fechaInicio) || string.IsNullOrEmpty(fechaFin))
+                    return new Response<List<ReporteDTO>>(false, null, "Las fechas son requeridas");
 
-        //        var detalleVentas = await _context.DetalleVenta
-        //            .Include(dv => dv.IdProductoNavigation)
-        //            .Include(dv => dv.IdVentaNavigation)
-        //            .Where(dv => dv.IdVentaNavigation.FechaRegistro.Value.Date >= fech_Inicio.Date &&
-        //                         dv.IdVentaNavigation.FechaRegistro.Value.Date <= fech_Fin.Date)
-        //            .ToListAsync();
+                DateTime fInicio = DateTime.ParseExact(fechaInicio, "dd/MM/yyyy", new CultureInfo("es-AR"));
+                DateTime fFin = DateTime.ParseExact(fechaFin, "dd/MM/yyyy", new CultureInfo("es-AR"));
 
-        //        var listaDto = detalleVentas.Select(d => new ReporteDto
-        //        {
-        //            FechaRegistro = d.IdVentaNavigation.FechaRegistro?.ToString("dd/MM/yyyy"),
-        //            NumeroDocumento = d.IdVentaNavigation.NumeroDocumento,
-        //            TipoPago = d.IdVentaNavigation.TipoPago,
-        //            TotalVenta = d.IdVentaNavigation.Total.ToString("0.00"),
-        //            Producto = d.IdProductoNavigation?.Nombre,
-        //            Cantidad = d.Cantidad,
-        //            Precio = d.Precio,
-        //            Total = d.Total
-        //        }).ToList();
+                var detalles = await _context.DetalleVenta
+                    .Include(d => d.IdProductoNavigation)
+                    .Include(d => d.IdVentaNavigation)
+                    .Where(d =>
+                        d.IdVentaNavigation.FechaRegistro.Value.Date >= fInicio.Date &&
+                        d.IdVentaNavigation.FechaRegistro.Value.Date <= fFin.Date
+                    )
+                    .ToListAsync();
 
-        //        return new Response<List<ReporteDto>>(true, listaDto);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return new Response<List<ReporteDto>>(false, null, $"Error al generar reporte: {ex.Message}");
-        //    }
-        //}
+                var lista = detalles.Select(d => new ReporteDTO
+                {
+                    NumeroDocumento = d.IdVentaNavigation.NumeroDocumento,
+                    TipoPago = d.IdVentaNavigation.TipoPago,
+                    FechaRegistro = d.IdVentaNavigation.FechaRegistro?.ToString("dd/MM/yyyy"),
+                    TotalVenta = (d.IdVentaNavigation.Total ?? 0).ToString("0.00"),
+                    Producto = d.IdProductoNavigation?.Nombre,
+                    Cantidad = d.Cantidad,
+                    Precio = (d.Precio ?? 0).ToString("0.00"),
+                    Total = (d.Total ?? 0).ToString("0.00")
+                }).ToList();
+
+                return new Response<List<ReporteDTO>>(true, lista, "Reporte generado correctamente");
+            }
+            catch (Exception ex)
+            {
+                return new Response<List<ReporteDTO>>(false, null, $"Error al generar reporte: {ex.Message}");
+            }
+        }
+
+
     }
 }

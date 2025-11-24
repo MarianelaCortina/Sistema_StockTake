@@ -1,0 +1,97 @@
+/* === CONTENEDOR GENERAL DEL MODAL === */
+mat-dialog-content {
+  padding: 10px 0;
+  background: #151a1e;
+  color: #e6e6e6;
+}
+
+/* === CAMPOS DE FORMULARIO === */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+mat-form-field.appearance-outline .mat-mdc-text-field-wrapper {
+  background: #21272b !important;
+  border-radius: 8px !important;
+}
+
+.mat-mdc-form-field-outline {
+  color: #4b575f !important;
+}
+
+.mat-mdc-form-field-outline-thick {
+  color: #00e1c6 !important; /* color cuando está activo */
+}
+
+.mat-mdc-input-element {
+  color: #e6e6e6 !important;
+}
+
+.mat-mdc-select-placeholder,
+.mat-mdc-floating-label {
+  color: #9aa4ac !important;
+}
+
+mat-icon {
+  color: #9aa4ac;
+}
+
+/* === BOTONES === */
+mat-dialog-actions {
+  margin-top: 20px;
+  padding: 0 4px;
+}
+
+button[mat-raised-button] {
+  height: 44px;
+  font-weight: 600;
+  padding: 0 18px;
+  border-radius: 8px;
+}
+
+/* botón cancelar */
+button[mat-dialog-close] {
+  background: #2b3338 !important;
+  color: #d5d5d5 !important;
+}
+
+button[mat-dialog-close]:hover {
+  background: #3a444b !important;
+}
+
+/* botón guardar / actualizar */
+button[color="primary"] {
+  background: #0078ff !important;
+  color: #fff !important;
+}
+
+button[color="primary"]:hover {
+  background: #0a8dff !important;
+}
+
+/* === TÍTULO === */
+h2[mat-dialog-title] {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+/* === GRID CORRECTIONS (si usás mat-grid-list) === */
+mat-grid-tile {
+  padding: 0 !important;
+}
+
+mat-dialog-content {
+  max-height: 65vh;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+mat-dialog-actions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}

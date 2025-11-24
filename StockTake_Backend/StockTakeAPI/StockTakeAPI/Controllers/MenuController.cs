@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using StockTakeAPI.DTOs;
 using StockTakeAPI.Helpers;
 using StockTakeAPI.Interfaces;

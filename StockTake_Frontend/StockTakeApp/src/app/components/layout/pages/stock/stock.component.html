@@ -1,0 +1,99 @@
+<h2>📦 Control de Stock</h2>
+
+<!-- ✅ Alertas Inteligentes -->
+<mat-card class="alertas-card">
+  <h2>🔍 Alertas Inteligentes</h2>
+
+  <div *ngIf="alertas && alertas.length > 0; else noAlertas">
+    <div *ngFor="let a of alertas" class="alert-card" [style.--color]="a.color">
+      <span class="material-icons">{{ a.icono }}</span>
+      <b>{{ a.nombre }}</b> — {{ a.estado }}
+
+      <div>
+        Stock: {{ a.stock }} | Quedan {{ a.diasEstimadosRestantes }} días
+      </div>
+
+      <div class="urgencia-bar" [style.width.%]="a.porcentajeUrgencia"></div>
+
+      <small>Sugerencia: reponer hasta {{ a.stockMinimoRecomendado }} unidades</small>
+    </div>
+  </div>
+
+  <ng-template #noAlertas>
+    <p>✅ Todo el stock se encuentra estable.</p>
+  </ng-template>
+</mat-card>
+
+<hr>
+
+<!-- ✅ Productos -->
+<mat-card class="productos-card">
+  <h3>📋 Productos</h3>
+
+  <div *ngIf="loadingProductos">
+    <p>Cargando productos...</p>
+  </div>
+
+  <div *ngIf="!loadingProductos && productos && productos.length > 0; else noProductos" class="productos-section">
+    <div class="productos-grid">
+      <mat-card *ngFor="let p of productos" class="producto-card" appearance="outlined">
+        <div class="producto-info">
+          <span class="producto-nombre">{{ p.nombre }}</span>
+          <span class="producto-stock">Stock: {{ p.stockActual }}</span>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+  <ng-template #noProductos>
+    <p>⚠️ No se encontraron productos disponibles.</p>
+  </ng-template>
+</mat-card>
+
+<hr>
+
+<!-- ✅ Movimientos -->
+<mat-card class="movimientos-card">
+  
+
+  <!-- 📈 Gráfico de barras -->
+  <div *ngIf="chartOptions && chartOptions.series && chartOptions.series.length > 0" class="grafico-container">
+    <h3>📈 Tendencia: Ventas vs Stock Disponible</h3>
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [xaxis]="chartOptions.xaxis"
+      [dataLabels]="chartOptions.dataLabels"
+      [stroke]="chartOptions.stroke"
+      [legend]="chartOptions.legend"
+      [tooltip]="chartOptions.tooltip"
+      [grid]="chartOptions.grid"
+      [title]="chartOptions.title">
+    </apx-chart>
+  </div>
+
+  <h3>📊 Últimos Movimientos</h3>
+
+     <!-- 💼 Lista de movimientos -->
+  <div *ngIf="!loadingMovimientos && movimientos.length > 0; else noMovimientos" class="movimientos-grid">
+    <div *ngFor="let m of movimientos" class="mov-card" [ngClass]="m.tipo === 'Venta' ? 'venta' : 'ingreso'">
+      <div class="mov-icon">
+        <mat-icon>{{ m.tipo === 'Venta' ? 'trending_down' : 'trending_up' }}</mat-icon>
+      </div>
+      <div class="mov-info">
+        <div class="mov-header">
+          <span class="mov-tipo">{{ m.tipo }}</span>
+          <span class="mov-fecha">{{ m.fecha | date:'short' }}</span>
+        </div>
+        <div class="mov-body">
+          <strong>{{ m.producto }}</strong>
+          <span class="mov-cant">({{ m.cantidad }})</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noMovimientos>
+    <p>⚠️ No hay movimientos recientes.</p>
+  </ng-template>
+</mat-card>

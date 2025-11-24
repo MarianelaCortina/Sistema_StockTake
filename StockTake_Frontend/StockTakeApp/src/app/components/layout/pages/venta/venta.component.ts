@@ -2,16 +2,38 @@ import { Component } from '@angular/core';
 import { Product } from '../../../../interfaces/product';
 import { DetalleVenta } from '../../../../interfaces/detalle-venta';
 import { Venta } from '../../../../interfaces/venta';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProductService } from '../../../../services/product.service';
 import { VentaService } from '../../../../services/venta.service';
 import Swal from 'sweetalert2';
+import { MatCardModule } from "@angular/material/card";
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatIconModule } from "@angular/material/icon";
+import { CommonModule } from '@angular/common';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+
+
 
 @Component({
   selector: 'app-venta',
   standalone: true,
-  imports: [],
+  imports: [ CommonModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatTableModule,
+    MatIconModule],
   templateUrl: './venta.component.html',
   styleUrl: './venta.component.css'
 })
@@ -128,16 +150,17 @@ export class VentaComponent {
               text: 'No se pudo registrar la venta'
             });
           }
+           this.bloquearBotonRegistrar = false;
         },
-        complete:()=>{
+          
+        error:(e) => {
           this.bloquearBotonRegistrar = false;
-            Swal.fire({
+          Swal.fire({
             icon: 'error',
-            title: 'Error',
+            title: 'Oops...',
             text: 'Hubo un problema al registrar la venta'
           });
-        },
-        error:(e) => {}
+        }
       })
     }
   }

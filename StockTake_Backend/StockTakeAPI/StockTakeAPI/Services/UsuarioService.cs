@@ -15,17 +15,6 @@ namespace StockTakeAPI.Services
         {
             _context = context;
         }
-
-        //public async Task<Usuario?> ValidarCredenciales(string correo, string clave)
-        //{
-        //    return await _context.Usuarios
-        //        .Include(u => u.Rol)
-        //        .FirstOrDefaultAsync(u =>
-        //            u.Email == correo &&
-        //            u.ClaveHash == clave &&
-        //            u.EsActivo);
-        //}
-
         public async Task<Usuario?> ValidarCredenciales(string correo, string clave)
         {
             var usuario = await _context.Usuarios
@@ -54,10 +43,44 @@ namespace StockTakeAPI.Services
             return nuevoUsuario;
         }
 
+        public async Task<List<Usuario>> ListarUsuarios()
+        {
+            return await _context.Usuarios
+                .Include(u => u.Rol)
+                .ToListAsync();
+        }
 
+        public async Task<Usuario?> ObtenerPorId(int id)
+        {
+            return await _context.Usuarios
+                .Include(u => u.Rol)
+                .FirstOrDefaultAsync(u => u.Id == id);
+        }
 
+        public async Task<Usuario?> ActualizarUsuario(Usuario usuarioActualizado)
+        {
+            var usuario = await _context.Usuarios.FindAsync(usuarioActualizado.Id);
 
+            if (usuario == null) return null;
 
+            usuario.NombreCompleto = usuarioActualizado.NombreCompleto;
+            usuario.Email = usuarioActualizado.Email;
+            usuario.RolId = usuarioActualizado.RolId;
+
+            await _context.SaveChangesAsync();
+            return usuario;
+        }
+
+        public async Task<bool> EliminarUsuario(int id)
+        {
+            var usuario = await _context.Usuarios.FindAsync(id);
+
+            if (usuario == null) return false;
+
+            _context.Usuarios.Remove(usuario);
+            await _context.SaveChangesAsync();
+            return true;
+        }
 
     }
 

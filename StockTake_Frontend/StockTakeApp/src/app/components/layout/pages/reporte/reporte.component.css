@@ -1,0 +1,51 @@
+:host {
+  display: block;
+  min-height: calc(100vh - 80px);
+  padding-bottom: 40px;
+}
+
+.title {
+  margin: 20px 0 10px 40px;
+  font-size: 32px;
+  color: #e0e0e0;
+  font-weight: 600;
+}
+
+.card-container {
+  margin: 20px 40px;
+  padding: 24px;
+  background: #1b1f23;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.35);
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+mat-form-field {
+  width: 220px;
+}
+
+.boton-buscar,
+.btn-exportar {
+  height: 56px;
+  margin-top: 4px;
+}
+
+.table-container {
+  margin-top: 16px;
+  overflow: auto;
+  border-radius: 8px;
+}
+
+mat-header-cell {
+  font-weight: 600;
+  color: #bdbdbd !important;
+}
+
+mat-cell {
+  color: #e4e4e4;
+}

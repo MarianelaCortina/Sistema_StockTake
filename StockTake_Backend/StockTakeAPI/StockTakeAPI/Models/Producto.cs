@@ -10,7 +10,7 @@ namespace StockTakeAPI.Models
             public string? Descripcion { get; set; }
             [Precision(10, 2)]
             public decimal Precio { get; set; }
-            public int Stock { get; set; } // 👈 Nuevo atributo agregado
+            public int Stock { get; set; }
             
             public bool EsActivo { get; set; }
             public DateTime FechaRegistro { get; set; } = DateTime.Now;
@@ -22,7 +22,7 @@ namespace StockTakeAPI.Models
             public Categoria? Categoria { get; set; }
 
             public  ICollection<DetalleVenta> DetalleVenta { get; set; } = new List<DetalleVenta>();
-    }
+            public virtual ICollection<MovimientoStock> MovimientosStock { get; set; } = new List<MovimientoStock>();
 
-
+        }
 }

@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { DashboardComponent } from "./pages/dashboard/dashboard.component";
+
 
 @Component({
   selector: 'app-home',
@@ -22,7 +22,7 @@ import { DashboardComponent } from "./pages/dashboard/dashboard.component";
     MatButtonModule,
     MatSidenavModule,
     MatListModule,
-    DashboardComponent
+    
 ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'

@@ -1,0 +1,18 @@
+<mat-card *ngIf="!cargando">
+  <h2>⚠️  Alertas Inteligentes de Stock</h2>
+
+  <div *ngIf="alertas.length === 0" class="sin-alertas">
+    <mat-icon color="primary">check_circle</mat-icon>
+    <p>Todo el stock se encuentra en niveles óptimos ✅</p>
+  </div>
+
+  <div *ngFor="let alerta of alertas" class="alerta-card" [ngClass]="{
+      'critica': alerta.diasEstimadosRestantes <= 3,
+      'baja': alerta.diasEstimadosRestantes > 3 && alerta.diasEstimadosRestantes <= 7
+    }">
+    <mat-icon color="warn">warning</mat-icon>
+    <h3>{{ alerta.nombre }}</h3>
+    <p>{{ alerta.alerta }}</p>
+    <small>Stock: {{ alerta.stock }} | Días restantes: {{ alerta.diasEstimadosRestantes }}</small>
+  </div>
+</mat-card>

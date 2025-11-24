@@ -1,0 +1,149 @@
+/* 📌 Contenedor principal de la vista */
+.venta-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Evita que la vista se estire innecesariamente */
+:host {
+  display: block;
+  min-height: calc(100vh - 80px); /* ajusta según tu header */
+}
+
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.venta-card {
+  margin: 30px auto;
+  padding: 30px;
+  max-width: 1200px;
+  border-radius: 14px;
+  background:#1b1f23;
+}
+
+/* --- TÍTULO --- */
+.venta-titulo {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #1f1f1f;
+}
+
+/* --- FORM GRID --- */
+.form-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr auto;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+/* --- CAMPOS --- */
+mat-form-field {
+  width: 100%;
+}
+
+mat-form-field .mat-mdc-text-field-wrapper {
+  background: #f5f7fa !important;
+  border-radius: 8px !important;
+}
+
+mat-label {
+   color: white !important; 
+
+}
+
+/* --- BOTÓN AGREGAR --- */
+.btn-agregar {
+  height: 56px;
+  width: 100%;
+  background: #1976d2 !important;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* --- TIPO DE PAGO + TOTAL --- */
+.pago-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  margin: 25px 0;
+}
+
+.total-box {
+  background: #4caf50;
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- TABLA --- */
+.table-container {
+  margin-top: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: white;
+}
+
+mat-header-row {
+  background: #e9ecef !important;
+}
+
+mat-header-cell {
+  font-weight: 600 !important;
+  color: #1f1f1f !important;
+}
+
+mat-row:hover {
+  background: #f7f9fc !important;
+}
+
+/* --- BOTÓN REGISTRAR --- */
+.btn-registrar {
+  width: 220px;
+  height: 50px;
+  margin-top: 25px;
+  background: #1976d2 !important;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  float: right;
+}
+
+
+/* ✅ Restaurar estilos originales de Angular Material */
+button[mat-raised-button],
+button.mat-mdc-raised-button {
+  background-color: var(--mdc-filled-button-container-color, #1976d2) !important;
+  color: var(--mdc-filled-button-label-text-color, #fff) !important;
+  box-shadow: var(--mdc-filled-button-container-elevation-shadow, none);
+}
+
+/* ✅ Botón disabled */
+button[disabled] {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+}
+
+
+.mat-row, .mat-header-row {
+  display: flex;
+}
+
+.mat-column-producto {
+  width: 60%;   /* ocupa más del espacio */
+}
+
+.mat-column-cantidad,
+.mat-column-precio,
+.mat-column-total,
+.mat-column-accion {
+  width: 20%;
+}

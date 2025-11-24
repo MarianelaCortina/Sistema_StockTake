@@ -47,12 +47,5 @@ namespace StockTakeAPI.Controllers
 
         }
 
-        
-
-
-
-
-
-
     }
 }
