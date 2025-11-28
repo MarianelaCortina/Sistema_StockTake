@@ -5,7 +5,7 @@ namespace StockTakeAPI.Interfaces
 {
     public interface IUsuarioService
     {
-        Task<Usuario?> ValidarCredenciales(string correo, string clave);
+        Task<Usuario?> ValidarCredenciales(string email, string clave);
         Task<Usuario> CrearUsuario(Usuario nuevoUsuario);
 
         Task<List<Usuario>> ListarUsuarios();

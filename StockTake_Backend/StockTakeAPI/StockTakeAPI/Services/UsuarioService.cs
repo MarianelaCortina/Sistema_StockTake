@@ -15,11 +15,11 @@ namespace StockTakeAPI.Services
         {
             _context = context;
         }
-        public async Task<Usuario?> ValidarCredenciales(string correo, string clave)
+        public async Task<Usuario?> ValidarCredenciales(string email, string clave)
         {
             var usuario = await _context.Usuarios
                 .Include(u => u.Rol)
-                .FirstOrDefaultAsync(u => u.Email == correo && u.EsActivo);
+                .FirstOrDefaultAsync(u => u.Email == email && u.EsActivo);
 
             if (usuario == null || string.IsNullOrWhiteSpace(usuario.ClaveHash))
                 return null;

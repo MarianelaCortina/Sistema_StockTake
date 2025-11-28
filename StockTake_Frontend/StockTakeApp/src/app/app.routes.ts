@@ -3,6 +3,12 @@ import { HomeComponent } from './components/layout/home.component';
 
 
 export const routes: Routes = [
+
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./components/layout/login/login.component').then(m => m.LoginComponent),
+  },
   {
     path: '',
     component: HomeComponent,

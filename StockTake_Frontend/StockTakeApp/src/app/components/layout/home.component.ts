@@ -9,6 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -30,14 +32,28 @@ import { MatListModule } from '@angular/material/list';
 export class HomeComponent {
  listaMenu: Menu[] = [];
 
-  constructor(private _menuService: MenuService) {
-     console.log("Métodos disponibles:", Object.getOwnPropertyNames(Object.getPrototypeOf(_menuService)));
-  }
+ correoUsuario: string | null = '';
+  rolUsuario: string | null = '';
+
+
+  constructor(
+    private _menuService: MenuService,
+    private router: Router,
+    private _authService: AuthService
+  ) {}
+
 
   ngOnInit(): void {
-    // Por ahora usamos un idUsuario fijo (ejemplo: 1)
-    const idUsuario = 1;
+  
+    const usuario = this._authService.obtenerSesionUsuario();
 
+    if (usuario != null) {
+      this.correoUsuario = usuario.correo;
+      this.rolUsuario = usuario.rolDescripcion;
+    }
+
+    const idUsuario = usuario?.idUsuario ?? 0;
+    
     this._menuService.lista(idUsuario).subscribe({
       next: (data) => {
         if (data.status) {
@@ -51,4 +67,9 @@ export class HomeComponent {
       }
     });
   }
+
+  cerrarSesion() {
+  localStorage.clear(); // o si guardás token, podés usar removeItem
+  this.router.navigate(['/login']);
+}
 }

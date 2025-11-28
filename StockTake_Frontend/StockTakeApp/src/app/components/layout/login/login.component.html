@@ -1,0 +1,36 @@
+<div class="login-container">
+
+  <div class="login-image"></div>
+
+  <div class="login-wrapper">
+    <mat-card class="login-card">
+    <div class="brand-title">StockTake</div>
+      <!-- <h2 class="login-title">Bienvenido 👋</h2> -->
+
+      <form [formGroup]="formularioLogin" (ngSubmit)="iniciarSesion()">
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" formControlName="clave" />
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          class="btn-login"
+          [disabled]="loading"
+        >
+          <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+          <span *ngIf="!loading">Ingresar</span>
+        </button>
+      </form>
+    </mat-card>
+  </div>
+
+</div>

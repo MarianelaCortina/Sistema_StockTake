@@ -8,9 +8,9 @@
         <span class="flex-spacer"></span>
         <div class="user-info">
             <label for="" class="user-label">
-                <!-- {{correoUsuario}} | {{rolUsuario}} -->
+                <span>{{ correoUsuario }} | {{ rolUsuario }}</span>
             </label>
-            <button mat-icon-button >
+            <button mat-icon-button (click)="cerrarSesion()">
                 <mat-icon>logout</mat-icon>
             </button>
         </div>

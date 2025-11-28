@@ -23,7 +23,7 @@ namespace StockTakeAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Login([FromBody]LoginDTO login)
         {
-            var usuario = await _usuarioService.ValidarCredenciales(login.Correo!, login.Clave!);
+            var usuario = await _usuarioService.ValidarCredenciales(login.Email!, login.Clave!);
             if (usuario == null)
             {
                 return Unauthorized("Credenciales inválidas");
