@@ -53,6 +53,10 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./components/layout/pages/reporte/reporte.component').then(m => m.ReporteComponent),
       },
+      { path: 'pages/producto', redirectTo: 'pages/productos', pathMatch: 'full' },
+      { path: 'pages/usuario', redirectTo: 'pages/usuarios', pathMatch: 'full' },
+      { path: 'pages/historial-venta', redirectTo: 'pages/historial_venta', pathMatch: 'full' },
+      { path: 'pages/reporte', redirectTo: 'pages/reportes', pathMatch: 'full' },
     ],
   },
   /// fallback a Dashboard si escriben algo inexistente

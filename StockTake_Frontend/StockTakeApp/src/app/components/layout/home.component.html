@@ -22,7 +22,7 @@
         <mat-nav-list>
 
             <mat-list-item *ngFor="let menu of listaMenu" 
-            [routerLink]="menu.url"
+            [routerLink]="obtenerRutaMenu(menu)"
             routerLinkActive="active-link"
             #rla="routerLinkActive"
             [activated]="rla.isActive">

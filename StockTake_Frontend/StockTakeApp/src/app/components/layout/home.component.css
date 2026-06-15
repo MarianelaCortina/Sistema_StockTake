@@ -2,6 +2,14 @@
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 8px;
 }
+
+.sidenav-container {
+  height: calc(100vh - 64px);
+}
+
+mat-sidenav-content {
+  overflow: auto;
+}
 mat-sidenav {
   width: 220px !important; /* 🔹 Antes suele ser 240px o más */
   background-color: #121212;
@@ -46,5 +54,11 @@ mat-toolbar {
 .user-label {
   font-size: 14px;
   color: #bbb;
+}
+
+@media (max-width: 599px) {
+  .sidenav-container {
+    height: calc(100vh - 56px);
+  }
 }
 

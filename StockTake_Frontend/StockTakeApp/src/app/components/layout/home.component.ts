@@ -30,11 +30,26 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
- listaMenu: Menu[] = [];
+  listaMenu: Menu[] = [];
 
- correoUsuario: string | null = '';
+  correoUsuario: string | null = '';
   rolUsuario: string | null = '';
 
+  private readonly rutasMenu: Record<string, string> = {
+    dashboard: '/pages/dashboard',
+    inicio: '/pages/dashboard',
+    producto: '/pages/productos',
+    productos: '/pages/productos',
+    stock: '/pages/stock',
+    venta: '/pages/venta',
+    ventas: '/pages/venta',
+    usuario: '/pages/usuarios',
+    usuarios: '/pages/usuarios',
+    historialventa: '/pages/historial_venta',
+    historialventas: '/pages/historial_venta',
+    reporte: '/pages/reportes',
+    reportes: '/pages/reportes'
+  };
 
   constructor(
     private _menuService: MenuService,
@@ -49,7 +64,7 @@ export class HomeComponent {
 
     if (usuario != null) {
       this.correoUsuario = usuario.correo;
-      this.rolUsuario = usuario.rolDescripcion;
+      this.rolUsuario = usuario.rolNombre;
     }
 
     const idUsuario = usuario?.idUsuario ?? 0;
@@ -68,8 +83,35 @@ export class HomeComponent {
     });
   }
 
+  obtenerRutaMenu(menu: Menu): string {
+    const rutaGuardada = this.normalizarClave(menu.url);
+    const nombreMenu = this.normalizarClave(menu.nombreMenu);
+
+    return this.rutasMenu[rutaGuardada]
+      ?? this.rutasMenu[nombreMenu]
+      ?? '/pages/dashboard';
+  }
+
+  private normalizarClave(valor: string | null | undefined): string {
+    if (!valor) {
+      return '';
+    }
+
+    const segmentos = valor
+      .trim()
+      .toLowerCase()
+      .replace(/^https?:\/\/[^/]+/, '')
+      .split('/')
+      .filter(Boolean);
+
+    return (segmentos.at(-1) ?? '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]/g, '');
+  }
+
   cerrarSesion() {
-  localStorage.clear(); // o si guardás token, podés usar removeItem
-  this.router.navigate(['/login']);
-}
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
 }

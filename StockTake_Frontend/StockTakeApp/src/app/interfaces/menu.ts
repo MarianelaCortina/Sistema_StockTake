@@ -1,5 +1,5 @@
 export interface Menu {
-  idMenu: number;
+  id: number;
   nombreMenu: string;
   icono: string;
   url: string;
